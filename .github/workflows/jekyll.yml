@@ -41,7 +41,7 @@ jobs:
           cache-version: 0 # Increment this number if you need to re-download cached gems
       - name: install gems
         # Outputs to the './_site' directory by default
-        run: gem install jekyll jekyll-gist jekyll-sitemap jekyll-seo-tag
+        run: gem install jekyll jekyll-gist jekyll-sitemap jekyll-seo-tag jekyll-paginate
         env:
           JEKYLL_ENV: production    
       - name: Build with Jekyll
