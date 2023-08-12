@@ -66,6 +66,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist
+          path: _site/
       - name: verify folder structure
         run: ls 
       - name: copy file via ssh key
