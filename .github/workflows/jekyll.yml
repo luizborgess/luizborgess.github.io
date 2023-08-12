@@ -66,7 +66,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist
-          path: html/
+          path: hlspace.org/
       - name: verify folder structure
         run: ls 
       - name: copy file via ssh key
@@ -76,7 +76,7 @@ jobs:
           username: ${{ secrets.USER }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          source: html/
+          source: hlspace.org/
           target: /var/www/
 
 
