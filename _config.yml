@@ -1,0 +1,27 @@
+# Dependencies
+highlighter:      pygments
+
+
+
+# Setup
+title:            hlspace.org
+tagline:          'Homelab space'
+description:      'Homelab space'
+url:              http://hlspace.org
+baseurl:          /
+
+author:
+  name:           'Luiz'
+
+paginate:         5
+
+# Custom vars
+version:          2.1.0
+
+
+# Gems
+plugins:
+  - jekyll-paginate
+
+github:
+  repo:           https://github.com/poole/hyde
