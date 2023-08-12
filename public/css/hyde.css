@@ -50,6 +50,7 @@ body {
     background-color: #000000;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    font-family: 'Montserrat',serif;
 }
 /*
  * Sidebar
@@ -129,6 +130,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.25;
   color: #9de5a7;
   text-rendering: optimizeLegibility;
+  font-family: 'Montserrat',sans-serif;
 }
 /* Container
  *
