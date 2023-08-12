@@ -66,7 +66,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist
-          path: _site/
+          path: html/
       - name: verify folder structure
         run: ls 
       - name: copy file via ssh key
@@ -76,8 +76,8 @@ jobs:
           username: ${{ secrets.USER }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          source: _site/
-          target: /home/ubuntu
+          source: html/
+          target: /var/www/
 
 
 
