@@ -60,12 +60,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: copy file via ssh key
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          port: ${{ secrets.PORT }}
-          key: ${{ secrets.SSHKEY }}
-          source: _site/*
-          target: /home/ubuntu/site01
+      - name: install gems
+        # Outputs to the './_site' directory by default
+        run: scp -r -i ${{ secrets.SSHKEY }} .\_site\ ${{ secrets.USER }}@${{ secrets.HOST }}:/home/ubuntu
+
+
+
+
+
