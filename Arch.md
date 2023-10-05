@@ -6,6 +6,6 @@ title: Arch-mirror
 A mirror for arch linux
 
 
-work in progress
+Looking for donations.
 
 

@@ -123,6 +123,9 @@ a.sidebar-nav-item:focus {
 .page-title, .post-title, .post-title a {
   color: #9de5a7;
 }
+.text-justify {
+  text-align: justify;
+}
 
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5rem;
