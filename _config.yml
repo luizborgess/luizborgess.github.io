@@ -4,10 +4,10 @@ highlighter:      pygments
 
 
 # Setup
-title:            hlspace.org
+title:            www.hlspace.org
 tagline:          'Homelab space'
 description:      'Homelab space'
-url:              http://hlspace.org
+url:              https://www.hlspace.org
 baseurl:          /
 
 author:
@@ -24,4 +24,4 @@ plugins:
   - jekyll-paginate
 
 github:
-  repo:           https://github.com/luizborgess/hlspace.org
+  repo:           https://github.com/luizborgess/luizborgess.github.io
