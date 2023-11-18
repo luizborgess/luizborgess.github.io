@@ -7,7 +7,7 @@ highlighter:      pygments
 title:            hlspace.org
 tagline:          'Homelab space'
 description:      'Homelab space'
-url:              https://luizborgess.github.io
+url:              https://www.hlspace.org
 baseurl:          /
 
 author:
