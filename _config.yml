@@ -4,7 +4,7 @@ highlighter:      pygments
 
 
 # Setup
-title:            www.hlspace.org
+title:            hlspace.org
 tagline:          'Homelab space'
 description:      'Homelab space'
 url:              https://www.hlspace.org
