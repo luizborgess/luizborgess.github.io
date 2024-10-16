@@ -1,17 +1,17 @@
 navbar_entries:
-  - title: about
-    url: about
-
-  - title: blog
-    url: blog
-
   - title: home
     url: https://www.hlspace.org
-
+  - title: blog
+    url: blog
+  - title: about
+    url: about
 project_entries:
   - title: Liquibase-rpm
     url: liquibase-rpm
     desc: Easy liquibase install with rpm
+  - title: Digital Controller
+    url: digitalcontroller
+    desc: Didatic control systems software
 
 
 
