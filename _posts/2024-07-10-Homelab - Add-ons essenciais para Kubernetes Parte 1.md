@@ -11,7 +11,7 @@ tags: [Homelab, Kubernetes, K8s, Proxmox, VM, Linux, Calico, MetalLB]
   alt="https://unsplash.com/@jplenio">
   <figcaption align = "center"><a href="https://unsplash.com/@jplenio"><i>https://unsplash.com/@jplenio</i></a></figcaption>
 </figure>
-Iniciando os artigos relacionados ao Kubernetes, esse por sua vez, tem a proposta de compilar add-ons, e fornecer insights para instalação e o que um pode complementar ao outro em um ambiente Homelab On-premises, onde podemos ter diferenças quando se utilizados em nuvem.
+Starting the articles related to Kubernetes, this one aims to compile add-ons and provide insights for installation and how one can complement the other in an On-premises Homelab environment, where differences may arise compared to cloud usage.
 
-Segue o post no 
+Check out the post on 
 [Linkedin](https://www.linkedin.com/pulse/homelab-add-ons-essenciais-para-kubernetes-parte-1-borges-ldkvf)

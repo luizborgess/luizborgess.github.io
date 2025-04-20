@@ -11,7 +11,7 @@ tags: [AI, ChatGTP, Homelab, Vicuna, LMSYS, TextGeneration]
   alt="https://unsplash.com/@usgs">
   <figcaption align = "center"><a href="https://unsplash.com/@usgs"><i>https://unsplash.com/@usgs</i></a></figcaption>
 </figure>
- Seguindo a serie de posts de homelab, porque não ter uma IA no Homelab? Então esse artigo segue como instalar uma web ui, e carregar um modelo de IA Open Source e por fim validando o mesmo.
+Following the homelab post series, why not have an AI in your Homelab? This article explains how to install a web UI, load an Open Source AI model, and finally validate it.
 
-Segue o post no 
+Check out the post on 
 [Linkedin](https://www.linkedin.com/pulse/homelab-instalando-pr%C3%B3pria-intelig%C3%AAncia-artificial-borges-mbjdf)

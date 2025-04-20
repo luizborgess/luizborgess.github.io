@@ -11,8 +11,7 @@ tags: [Microk8s, Proxmox, UbuntuServer, Gitlab, Kubernetes, Homelab, GitOps, Arg
   alt="The beautiful MDN logo.">
 
 </figure>
-Bom não compartilho muito no LinkedIn, mas sobre essa experiência de montar um homelab decidi escrever um artigo breve sobre os serviços utilizados e suas escolhas, e claro sobre a montagem do cluster local do microk8s para estudo. Caso queiram tutorial detalhado de como configurar cada ferramenta favor deixar nos comentários.
+Well, I don't share much on LinkedIn, but I decided to write a brief article about the services used and their choices, and of course about setting up the local Microk8s cluster for study purposes. If you would like a detailed tutorial on how to configure each tool, please leave a comment.
 
-
-Segue o post no 
-[Linkedin](https://www.linkedin.com/pulse/homelab-utilizando-proxmox-e-configurando-kubernetes-com-borges)
+Check out the post on 
+[LinkedIn](https://www.linkedin.com/pulse/homelab-utilizando-proxmox-e-configurando-kubernetes-com-borges)

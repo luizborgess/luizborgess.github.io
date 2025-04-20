@@ -11,7 +11,7 @@ tags: [Kubernetes, Homelab, k8s, Proxmox, Virtualização, Linux, ArgoCD, CertMa
   alt="https://unsplash.com/thommilkovic">
   <figcaption align = "center"><a href="https://unsplash.com/thommilkovic"><i>https://unsplash.com/thommilkovic</i></a></figcaption>
 </figure>
-Dando continuidade ao último artigo, esta segunda parte tem como objetivo reunir diferentes add-ons e demonstrar seu funcionamento em conjunto, com o objetivo de automatizar processos dentro do Cluster. Diferente da primeira parte, os passos descritos aqui podem ser replicados tanto em clusters on-premises quanto em ambientes de cloud.
+Continuing from the last article, this second part aims to gather different add-ons and demonstrate their functionality together, with the goal of automating processes within the Cluster. Unlike the first part, the steps described here can be replicated in both on-premises clusters and cloud environments.
 
-Segue o post no 
+Check out the post on 
 [Linkedin](https://www.linkedin.com/pulse/homelab-add-ons-essenciais-para-kubernetes-parte-2-borges-s2xhf)
