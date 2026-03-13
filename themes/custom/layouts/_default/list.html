@@ -1,0 +1,35 @@
+{{ define "main" }}
+
+<div class="blog-list">
+
+{{ range .Pages.ByDate.Reverse }}
+
+<article class="post {{ if .Params.featured }}featured{{ end }}">
+
+<div class="post-meta">
+
+<span class="post-date">
+{{ .Date.Format "January 2006" }}
+</span>
+
+{{ range .Params.tags }}
+<span class="tag">{{ . }}</span>
+{{ end }}
+
+</div>
+
+<h2 class="post-title">
+<a href="{{ .RelPermalink }}">{{ .Title }}</a>
+</h2>
+
+<p class="post-summary">
+{{ .Summary | replaceRE "(?s)<img[^>]*.*?</img>" "" | replaceRE "(?s)<img[^>]*>" "" | safeHTML }}
+</p>
+
+</article>
+
+{{ end }}
+
+</div>
+
+{{ end }}

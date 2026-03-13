@@ -1,0 +1,53 @@
+<div class="profile">
+
+<a href="{{ .Site.Home.RelPermalink }}">
+    <img class="avatar" src="{{ .Site.Params.avatar }}">
+    <h1>{{ .Site.Params.name }}</h1>
+</a>
+
+<p class="tagline">
+{{ .Site.Params.tagline }}
+</p>
+
+</div>
+
+
+<nav class="menu">
+
+{{ $currentUrl := .Page.RelPermalink }}
+{{ range .Site.Params.menu }}
+<a href="{{ .url }}"{{ if hasPrefix $currentUrl .url }} class="active"{{ end }}>
+{{ .name }}
+</a>
+{{ end }}
+
+</nav>
+
+
+<div class="social">
+
+{{ with .Site.Params.social.twitter }}
+<a href="{{ . }}" class="social-icon">
+    <img src="/icons/twitter.svg" alt="Twitter">
+</a>
+{{ end }}
+
+{{ with .Site.Params.social.github }}
+<a href="{{ . }}" class="social-icon">
+    <img src="/icons/github.svg" alt="Github">
+</a>
+{{ end }}
+
+{{ with .Site.Params.social.linkedin }}
+<a href="{{ . }}" class="social-icon">
+    <img src="/icons/linkedin.svg" alt="LinkedIn">
+</a>
+{{ end }}
+
+{{ with .Site.Params.social.scholar }}
+<a href="{{ . }}" class="social-icon">
+    <img src="/icons/scholar.svg" alt="Scholar">
+</a>
+{{ end }}
+
+</div>

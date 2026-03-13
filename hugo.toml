@@ -1,0 +1,30 @@
+baseURL = "https://example.com"
+languageCode = "en-us"
+title = "Luiz Borges"
+theme = "custom"
+
+[params]
+
+name = "Luiz Borges"
+tagline = "Engineer, DevOps, Student."
+avatar = "/images/profile.jpeg"
+bio = "I optimize for impact. I strive to work with talented people to do amazing things."
+
+# menu lateral
+[[params.menu]]
+name = "Blog"
+url = "/posts"
+weight = 1
+
+#[[params.menu]]
+#name = "Projects"
+#url = "/projects"
+
+
+
+# redes sociais
+[params.social]
+
+
+github = "https://github.com/luizborgess"
+linkedin = "https://www.linkedin.com/in/luizg/"
