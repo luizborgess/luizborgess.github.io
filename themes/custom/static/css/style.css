@@ -1,8 +1,37 @@
+:root {
+    --bg-primary: #fafafa;
+    --bg-secondary: #fff;
+    --text-primary: #222;
+    --text-secondary: #5a6b7b;
+    --text-muted: #64748b;
+    --border-color: #e5e7eb;
+    --link-color: #2563eb;
+    --tag-bg: #fcd34d;
+    --tag-text: #92400e;
+    --code-bg: #252525;
+    --code-text: #abb2bf;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #242424;
+    --text-primary: #e5e5e5;
+    --text-secondary: #a0a0a0;
+    --text-muted: #6b6b6b;
+    --border-color: #3a3a3a;
+    --link-color: #6b9fff;
+    --tag-bg: #f59e0b;
+    --tag-text: #fef3c7;
+    --code-bg: #1e1e1e;
+    --code-text: #d4d4d4;
+}
+
 body{
     margin:0;
-    background:#fafafa;
+    background:var(--bg-primary);
     font-family:"Source Serif 4", serif;
-    color:#222;
+    color:var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .wrapper{
@@ -16,7 +45,7 @@ body{
 .sidebar{
     width:260px;
     flex-shrink: 0;
-    border-right: 2px solid #e5e7eb;
+    border-right: 2px solid var(--border-color);
     padding-right: 40px;
     display: flex;
     flex-direction: column;
@@ -40,7 +69,7 @@ body{
 }
 
 .tagline{
-    color:#5a6b7b;
+    color:var(--text-secondary);
     font-style:italic;
 }
 
@@ -54,7 +83,7 @@ body{
 
 .menu a{
     text-decoration:none;
-    color:#333;
+    color:var(--text-primary);
     font-size:20px;
     position:relative;
     padding-bottom:2px;
@@ -99,6 +128,46 @@ body{
   opacity: 1;
 }
 
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.theme-toggle button {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle button:hover {
+  border-color: var(--link-color);
+}
+
+.theme-toggle .sun-icon {
+  display: none;
+}
+
+.theme-toggle .moon-icon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+  display: none;
+}
+
 
 
 /* 1. Container principal - ajuste de espaçamento */
@@ -135,7 +204,7 @@ body{
 
 .post-date {
     font-size: 12px;
-    color: #64748b;
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-family: 'Inter', sans-serif;
@@ -143,8 +212,8 @@ body{
 
 /* 4. Estilo das Tags (mais arredondadas como na imagem) */
 .tag {
-    background: #fcd34d; 
-    color: #92400e;
+    background: var(--tag-bg); 
+    color: var(--tag-text);
     font-size: 11px;
     padding: 2px 10px;
     border-radius: 6px;
@@ -166,13 +235,13 @@ body{
 
 .post-title a {
     text-decoration: none;
-    color: #1e293b;
+    color: var(--text-primary);
 }
 
 /* 6. Resumo */
 .post-summary {
     font-size: 17px;
-    color: #475569;
+    color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
 }
@@ -181,7 +250,7 @@ body, .post-summary {
     font-family: 'Merriweather', serif;
     font-size: 16px;
     line-height: 1.2;
-    color: #334155;
+    color: var(--text-primary);
 }
 
 /* Fonte para Títulos - Forte e elegante */
@@ -201,8 +270,7 @@ body, .post-summary {
 /* BLOCO DE CÓDIGO - CORRIGIDO E ATUALIZADO */
 
 .highlight {
-  /* Fundo cinza escuro profundo, para combinar com a imagem */
-  background: #252525 !important;
+  background: var(--code-bg) !important;
   border-radius: 8px;
   padding: 20px 25px;
   overflow-x: auto;
@@ -223,8 +291,7 @@ body, .post-summary {
   font-family: "JetBrains Mono", monospace;
   font-size: 15px;
   line-height: 1.6;
-  /* Cor das variáveis/identificadores, mais clara para fundo escuro */
-  color: #abb2bf;
+  color: var(--code-text);
 }
 
 /* comentários - cinza claro e itálico, como na imagem */
