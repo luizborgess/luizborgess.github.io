@@ -229,16 +229,22 @@ a:hover {
 .content {
   flex: 1;
   padding: 48px;
-  max-width: 100%;
-}
-
-.content > * {
-  max-width: 72ch;
 }
 
 .content p {
   line-height: 1.7;
   margin-bottom: 16px;
+}
+
+/* Limit home and about width */
+.hero,
+.about-content {
+  max-width: 72ch;
+}
+
+/* Posts page width */
+.posts-page {
+  max-width: 72ch;
 }
 
 /* Hero section (Home) */
@@ -439,7 +445,7 @@ a:hover {
   gap: 32px;
 }
 
-.post-with-toc .post-content {
+.post-with-toc .post-detail {
   flex: 1;
   min-width: 0;
   max-width: 72ch;
