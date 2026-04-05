@@ -238,7 +238,8 @@ a:hover {
 
 /* Limit home and about width */
 .hero,
-.about-content {
+.about-content,
+.content > section {
   max-width: 72ch;
 }
 
