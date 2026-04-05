@@ -229,6 +229,16 @@ a:hover {
 .content {
   flex: 1;
   padding: 48px;
+  max-width: 100%;
+}
+
+.content > * {
+  max-width: 72ch;
+}
+
+.content p {
+  line-height: 1.7;
+  margin-bottom: 16px;
 }
 
 /* Hero section (Home) */
@@ -432,6 +442,7 @@ a:hover {
 .post-with-toc .post-content {
   flex: 1;
   min-width: 0;
+  max-width: 72ch;
 }
 
 /* Table of Contents */
