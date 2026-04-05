@@ -1,0 +1,77 @@
+{{ define "main" }}
+
+{{ $pages := where .Site.RegularPages "Section" "posts" }}
+{{ $sorted := $pages.ByDate.Reverse }}
+{{ $index := 0 }}
+{{ range $i, $p := $sorted }}
+  {{ if eq $p.RelPermalink $.RelPermalink }}
+    {{ $index = $i }}
+  {{ end }}
+{{ end }}
+
+<div class="post-with-toc">
+  <article class="post-detail">
+    <a href="/posts" class="back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to posts
+    </a>
+
+    <header>
+      <h1>{{ .Title }}</h1>
+      <time class="post-meta">{{ .Date.Format "January 2, 2006" }}</time>
+      <div class="tags">
+        {{ range .Params.tags }}
+        <a href="/posts?tag={{ . }}" class="tag">{{ . }}</a>
+        {{ end }}
+      </div>
+    </header>
+
+    <div class="prose">
+      {{ .Content }}
+    </div>
+
+    <nav class="post-nav">
+      {{ if gt (len $sorted) 1 }}
+        {{ if gt $index 0 }}
+        {{ $prev := index $sorted (sub $index 1) }}
+        <a href="{{ $prev.RelPermalink }}" class="prev">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Previous
+          </span>
+          <strong>{{ $prev.Title }}</strong>
+        </a>
+        {{ else }}
+        <div></div>
+        {{ end }}
+        
+        {{ if lt $index (sub (len $sorted) 1) }}
+        {{ $next := index $sorted (add $index 1) }}
+        <a href="{{ $next.RelPermalink }}" class="next">
+          <span>
+            Next
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+          <strong>{{ $next.Title }}</strong>
+        </a>
+        {{ else }}
+        <div></div>
+        {{ end }}
+      {{ else }}
+      <div></div>
+      {{ end }}
+    </nav>
+  </article>
+
+  {{ $toc := .TableOfContents }}
+  {{ if ne $toc "" }}
+  <aside class="toc">
+    <div class="toc-content">
+      <p class="toc-title">On this page</p>
+      {{ $toc | replaceRE "<ul>" "<ul>" | replaceRE "<li>" "<li>" | safeHTML }}
+    </div>
+  </aside>
+  {{ end }}
+</div>
+
+{{ end }}

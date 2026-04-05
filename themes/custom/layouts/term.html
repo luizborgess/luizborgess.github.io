@@ -1,7 +1,31 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+
+<div class="posts-page">
+  <div class="posts-header">
+    <h1>{{ .Title }}</h1>
+    <p>Posts tagged with "{{ .Title }}"</p>
+  </div>
+
+  <div class="post-list">
+    {{ range .Paginator.Pages.ByDate.Reverse }}
+    <article class="post-item">
+      <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      <time class="post-date">{{ .Date.Format "January 2, 2006" }}</time>
+      <p class="post-excerpt">{{ .Summary | replaceRE "(?s)<img[^>]*.*?</img>" "" | replaceRE "(?s)<img[^>]*>" "" | safeHTML }}</p>
+      <div class="tags">
+        {{ range .Params.tags }}
+        <a href="{{ "tags" | relURL }}/{{ . | urlize }}" class="tag">{{ . }}</a>
+        {{ end }}
+      </div>
+    </article>
+    {{ end }}
+  </div>
+
+  {{ if eq (len .Pages) 0 }}
+  <div class="empty-state">
+    <p>No posts found for tag "{{ .Title }}".</p>
+  </div>
   {{ end }}
+</div>
+
 {{ end }}

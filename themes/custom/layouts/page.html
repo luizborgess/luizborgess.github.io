@@ -1,10 +1,30 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
 
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+<div class="about-content">
+    <h1>About</h1>
+    
+    {{ .Content }}
 
-  {{ .Content }}
-  
+    <h2>Technologies & Interests</h2>
+    <ul>
+        <li><span>→</span>AWS (EC2, ECS, Lambda, S3, CloudFormation)</li>
+        <li><span>→</span>Terraform, Ansible, Packer</li>
+        <li><span>→</span>Docker, Kubernetes, CI/CD</li>
+        <li><span>→</span>Linux, Networking, Security</li>
+        <li><span>→</span>FinOps, Cost Optimization</li>
+        <li><span>→</span>Monitoring (Prometheus, Grafana)</li>
+    </ul>
+
+    <h2>Get in Touch</h2>
+    <p>Whether you want to geek out over infrastructure or discuss AWS certification paths, feel free to reach out!</p>
+    <div class="tags">
+        {{ with .Site.Params.social.github }}
+        <a href="{{ . }}" class="tag" target="_blank" rel="noopener noreferrer">GitHub</a>
+        {{ end }}
+        {{ with .Site.Params.social.linkedin }}
+        <a href="{{ . }}" class="tag" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        {{ end }}
+    </div>
+</div>
+
 {{ end }}

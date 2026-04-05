@@ -1,35 +1,40 @@
 {{ define "main" }}
 
-<div class="blog-list">
-
-{{ range .Pages.ByDate.Reverse }}
-
-<article class="post {{ if .Params.featured }}featured{{ end }}">
-
-<div class="post-meta">
-
-<span class="post-date">
-{{ .Date.Format "January 2006" }}
-</span>
-
-{{ range .Params.tags }}
-<span class="tag">{{ . }}</span>
+{{ $allTags := slice }}
+{{ range (where .Site.RegularPages "Section" "posts") }}
+  {{ range .Params.tags }}
+    {{ $allTags = $allTags | append . }}
+  {{ end }}
 {{ end }}
+{{ $uniqueTags := sort (uniq $allTags) }}
 
-</div>
+<div class="posts-page">
+  <div class="posts-header">
+    <h1>Posts</h1>
+    <p>Writing about DevOps, cloud infrastructure, and Linux.</p>
+  </div>
 
-<h2 class="post-title">
-<a href="{{ .RelPermalink }}">{{ .Title }}</a>
-</h2>
+  <div class="tag-filters">
+    <a href="/posts" class="tag active">all</a>
+    {{ range $uniqueTags }}
+    <a href="/tags/{{ . | urlize }}" class="tag">{{ . }}</a>
+    {{ end }}
+  </div>
 
-<p class="post-summary">
-{{ .Summary | replaceRE "(?s)<img[^>]*.*?</img>" "" | replaceRE "(?s)<img[^>]*>" "" | safeHTML }}
-</p>
-
-</article>
-
-{{ end }}
-
+  <div class="post-list">
+    {{ range (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
+    <article class="post-item">
+      <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      <time class="post-date">{{ .Date.Format "January 2, 2006" }}</time>
+      <p class="post-excerpt">{{ .Summary | replaceRE "(?s)<img[^>]*.*?</img>" "" | replaceRE "(?s)<img[^>]*>" "" | safeHTML }}</p>
+      <div class="tags">
+        {{ range .Params.tags }}
+        <a href="/tags/{{ . | urlize }}" class="tag">{{ . }}</a>
+        {{ end }}
+      </div>
+    </article>
+    {{ end }}
+  </div>
 </div>
 
 {{ end }}

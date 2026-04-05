@@ -1,7 +1,16 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-  {{ end }}
+
+<div class="posts-page">
+  <div class="posts-header">
+    <h1>Tags</h1>
+    <p>All tags</p>
+  </div>
+
+  <div class="tag-filters">
+    {{ range .Site.Taxonomies.tags.ByCount }}
+    <a href="{{ .Page.RelPermalink }}" class="tag">{{ .Page.Title }}</a>
+    {{ end }}
+  </div>
+</div>
+
 {{ end }}

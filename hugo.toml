@@ -8,23 +8,27 @@ theme = "custom"
 name = "Luiz Borges"
 tagline = "Engineer, DevOps, Student."
 avatar = "/images/profile.jpeg"
-bio = "I optimize for impact. I strive to work with talented people to do amazing things."
+bio = "DevOps engineer passionate about building reliable, scalable infrastructure in the cloud and beyond. I write about AWS, Linux, infrastructure as code, and the things I learn along the way."
 
-# menu lateral
 [[params.menu]]
-name = "Blog"
-url = "/posts"
+name = "Home"
+url = "/"
 weight = 1
 
-#[[params.menu]]
-#name = "Projects"
-#url = "/projects"
+[[params.menu]]
+name = "Posts"
+url = "/posts"
+weight = 2
 
+[[params.menu]]
+name = "About"
+url = "/about"
+weight = 3
 
-
-# redes sociais
 [params.social]
 
+github = "https://github.com/luizh-gsoares"
+linkedin = "https://www.linkedin.com/in/luizh-gsoares/"
 
-github = "https://github.com/luizborgess"
-linkedin = "https://www.linkedin.com/in/luizg/"
+[taxonomies]
+tag = "tags"

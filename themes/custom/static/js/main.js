@@ -1,22 +1,56 @@
-const toggle = document.getElementById('theme-toggle');
-const html = document.documentElement;
+// Sidebar toggle for mobile
+const sidebarTrigger = document.getElementById('sidebar-trigger');
+const sidebar = document.getElementById('sidebar');
 
-const storedTheme = localStorage.getItem('theme');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (sidebarTrigger && sidebar) {
+    sidebarTrigger.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+    });
 
-if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
-    html.setAttribute('data-theme', 'dark');
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            if (!sidebar.contains(e.target) && !sidebarTrigger.contains(e.target)) {
+                sidebar.classList.remove('open');
+            }
+        }
+    });
 }
 
-toggle.addEventListener('click', () => {
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    if (newTheme === 'dark') {
-        html.setAttribute('data-theme', 'dark');
-    } else {
-        html.removeAttribute('data-theme');
-    }
-    
-    localStorage.setItem('theme', newTheme);
-});
+// Table of Contents - Active heading highlight
+function initToc() {
+    const tocLinks = document.querySelectorAll('.toc a');
+    if (tocLinks.length === 0) return;
+
+    const headings = Array.from(tocLinks).map(link => {
+        const id = link.getAttribute('href').replace('#', '');
+        return document.getElementById(id);
+    }).filter(Boolean);
+
+    if (headings.length === 0) return;
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        },
+        { rootMargin: '-80px 0px -80% 0px' }
+    );
+
+    headings.forEach(heading => observer.observe(heading));
+}
+
+// Initialize TOC when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initToc);
+} else {
+    initToc();
+}
