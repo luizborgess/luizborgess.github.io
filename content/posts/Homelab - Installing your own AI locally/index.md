@@ -10,17 +10,21 @@ tags: [AI, ChatGTP, Homelab, Vicuna, LMSYS, TextGeneration]
 
 Indo direto ao ponto, o motivo de escrita desse artigo, convém a curiosidade de como possuir uma IA assim como o ChatGPT instalado localmente, sem a necessidade de pagar pelo serviço. Isso será possibilitado por modelos de IA, opensource, como o Vicuna, do qual iremos utilizar no lab desse artigo. Localmente, seja na workstation ou servidor, poderá testar diversos desses modelos open source, utilizando a web-ui da qual iremos instalar, porém de certa forma estando limitado a quantidade memoria RAM e a GPU/VRAM disponível.
 
-Poderíamos colocar a nossa IA no servidor Proxmox, porém como o nosso servidor Proxmox, como pode ser lido no [artigo](/posts/homelab-using-proxmox-and-configuring-kubernetes-with-microk8s/) passado, está em um T470, esse Lenovo Thinkpad não possui uma RTX da Nvidia, ou mesmo outra GPU dedicada, então para esse lab teremos de utilizar o próprio desktop.
+![Conteúdo do artigo](https://media.licdn.com/dms/image/v2/D4D12AQG0ifIdtA_S2w/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1703946090458?e=1778112000&v=beta&t=XFRuXH0JCEbjQt-fEijXkwJa27XP2qw_QvxvJBcVeCs)
+
+Poderíamos colocar a nossa IA no servidor Proxmox, porém como o nosso servidor Proxmox, como pode ser lido no [artigo](https://www.linkedin.com/pulse/homelab-utilizando-proxmox-e-configurando-kubernetes-com-borges/) passado, está em um T470, esse Lenovo Thinkpad não possui uma RTX da Nvidia, ou mesmo outra GPU dedicada, então para esse lab teremos de utilizar o próprio desktop.
 
 > PS: Caso tenha uma placa NVIDIA e AMD no servidor Proxmox faça um passthrough da placa de vídeo para dentro da vm. Segue [documentação](https://pve.proxmox.com/wiki/PCI_Passthrough) de Passthrough.
 
-### Pré-requisitos do lab
+### Pré-requisitos do lab:
 
 Considerando rodar o modelo do Vicuna-7B:
 
-1. Memory: 24GB RAM
-2. GPU: Igual ou superior a 8GB VRAM
-3. Disk space: 50GB
+1 - Memory: 24GB RAM
+
+2 - GPU: Igual ou superior a 8GB VRAM
+
+3 - Disk space: 50GB
 
 Tenha em mente em quanto maior o modelo 7B, 13B, 32B, maior a quantidade RAM, que irá consumir, além disso o poder computacional da placa de vídeo é muito importante, por exemplo, o modelo 13B foi carregado com sucesso, porém ficou demasiadamente lento mesmo com uma NVIDIA RTX 2060 Super.
 
@@ -34,14 +38,14 @@ Nesse artigo vamos utilizar a web-ui do oobabooga:
 
 Então clonamos esse repo:
 
-```bash
-git clone https://github.com/oobabooga/text-generation-webui
+```
+git clone https://github.com/oobabooga/text-generation-webui.git
 cd text-generation-webui
 ```
 
 Na sequencia dependendo de seu SO, execute um dos scripts para instalar a ferramenta:
 
-```bash
+```
 start_linux.sh
 start_windows.bat
 start_macos.sh
@@ -50,40 +54,56 @@ start_wsl.bat
 
 Como estamos em uma maquina Windows, executar o seguinte comando para instalar:
 
-```powershell
+```
 .\start_windows.bat
 ```
 
 Após instalar alguns pacotes, você deve escolher a opção de GPU, que você possui no hardware, no nosso caso, uma NVIDIA RTX, então selecionar opção correspondente:
 
-A instalação continua instalando pytorch e outros packages de python necessários para a execução do Modelo. Após aproximadamente 10min , temos a web ui rodando.
+![Conteúdo do artigo](https://media.licdn.com/dms/image/v2/D4D12AQH-JyfgYDebgA/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1703947749093?e=1778112000&v=beta&t=xmr55ODbDhdp99Ky4oH-yzKFfHe2ESaHXxlG5Vy0IjA)
+
+A instalação continua instalando pytorch e outros packages de python necessários para a execução do Modelo. Após aproximadamente 10min, temos a web ui rodando:
+
+![Conteúdo do artigo](https://media.licdn.com/dms/image/v2/D4D12AQEB4CG-0uuWPw/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1703947790279?e=1778112000&v=beta&t=nJ_7VmWKHM6htZ9xFYlX0NdSBFSCMsH9j9UT89v1bdc)
 
 ### Realizando download do modelo
 
 Agora com a web-ui funcionando, basta realizarmos o download do modelo, para isso basta acessar [HuggingFace](https://huggingface.co/) e escolher o modelo para utilizar, tenha atenção ao tipo do modelo:
 
+![Conteúdo do artigo](https://media.licdn.com/dms/image/v2/D4D12AQHhD2zELyk71A/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1703887141055?e=1778112000&v=beta&t=Z9DctUnsUJlUTUkW7BIE3CaqwHTYF9ji6rIHSxjjTbM)
+
 Como vamos configurar um chatbot, escolhemos Vicuna do tipo Text Generation. Lembrando, tenha em mente a quantidade de parâmetros do modelo, tente rodar o menor primeiro em seguida o maior, por exemplo 7B, e na sequencia o 13B, caso o 13B fique muito lento, no que foi o nosso caso, temos que se contentar com o 7B, isso levando em consideração o Vicuna.
 
 Seguindo para o download, copie o nome do modelo e vá na web ui em
 
-**models > Download model or LoRA**
+models > Download model or LoRA:
 
-Com o download finalizado, por fim devemos carregar o modelo.
+![Conteúdo do artigo](https://media.licdn.com/dms/image/v2/D4D12AQG50wmEMjqbbg/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1703887829752?e=1778112000&v=beta&t=gigJMu706zBfO9zN1BQSIULALZ5TJsrfIMu9Ws7Dh7U)
+
+Com o download finalizado, por fim devemos carregar o modelo:
+
+![Conteúdo do artigo](https://media.licdn.com/dms/image/v2/D4D12AQEwfByeJsqa0w/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1703888582229?e=1778112000&v=beta&t=20axGY6cZCQokQM7BmcHl7ZhsQlef7QdNySaaHmefIw)
 
 ### Validação do chat e modelo Vicuna-7b
 
 Vá na aba chat. Para validar o Vicuna, vamos gerar um código de terraform para provisionar na AWS, uma simples lambda function com o nome t-800:
 
-O Vicuna, quer dizer T800, assumiu por conta própria que o runtime dessa lambda será em node.js, e que o tipo da lambda é um upload de arquivo .zip e não do tipo container image. Dessa maneira, o modelo apesar de não ser tão preciso quando o 13B e o 32B, se prova uma opção viável para estudar, criar códigos, traduzir idiomas, tudo mais que uma IA pode fazer.
+![Conteúdo do artigo](https://media.licdn.com/dms/image/v2/D4D12AQFpb47Nzno3Gw/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1703891233221?e=1778112000&v=beta&t=0Kt0wyJhZmnpCONfoXtQfPUxQgytnwLsFbhFMHySDiQ)
+
+O Vicuna, quer dizer T800, assumiu por conta própria que o runtime dessa lambda será em node.js, e que o tipo da lambda é um upload de arquivo.zip e não do tipo container image. Dessa maneira, o modelo apesar de não ser tão preciso quando o 13B e o 32B, se prova uma opção viável para estudar, criar códigos, traduzir idiomas, tudo mais que uma IA pode fazer.
 
 ---
 
 ### Bônus: Customize o chat
 
-A web ui proporciona um campo para customizarmos o chat, assim podemos criar qualquer character no chat, vá na aba parameters > character e preencha nome e picture conforme o desejado.
+A web ui proporciona um campo para customizarmos o chat, assim podemos criar qualquer *character* no chat, vá na aba parameters > character e preencha nome e picture conforme o desejado.
+
+![Conteúdo do artigo](https://media.licdn.com/dms/image/v2/D4D12AQGiuqNnMK_HDA/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1703891683963?e=1778112000&v=beta&t=LLUgNauGnrJHulWvOaFO-b8VSsim4puiBvlBHt-CLE8)
 
 Como podem ver, criei o T800 de Terminator 1984, somente para levantar a brincadeira do medo que a IA traz.
 
+![Conteúdo do artigo](https://media.licdn.com/dms/image/v2/D4D12AQFs8Q57vnWVXQ/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1703891763945?e=1778112000&v=beta&t=CSsN0GqB31QFhZWlG8kCQmGS0xDur1rafv7SD9yVYK8)
+
 Acompanhe os outros artigos, incluindo a introdução a serie homelab:
 
-1. [Homelab – Utilizando Proxmox e configurando Kubernetes com Microk8s](/posts/homelab-using-proxmox-and-configuring-kubernetes-with-microk8s/)
+1 - [Homelab – Utilizando Proxmox e configurando Kubernetes com Microk8s](https://www.linkedin.com/pulse/homelab-utilizando-proxmox-e-configurando-kubernetes-com-borges/)
